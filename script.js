@@ -108,13 +108,67 @@ Write two more event handlers for activating and deactivating all powers when th
 
 // You may notice that your code to enable individual powers (not all at once) is very similar. To keep your code DRY, make one function that will handle activating a power depending on which button is clicked. (Hint: one way to get started is to use event.target.id.split("-") in your function)
 
-flightHandlerFunction = () =>{
-    const splitID = event.target.id.split("-")    
-    document.querySelector(`#${splitID[1]}`).classList.remove("disabled");
-    document.querySelector(`#${splitID[1]}`).classList.add("enabled");
-}
+// flightHandlerFunction = () =>{
+//     const splitID = event.target.id.split("-")    
+//     document.querySelector(`#${splitID[1]}`).classList.remove("disabled");
+//     document.querySelector(`#${splitID[1]}`).classList.add("enabled");
+// }
 
 
+
+
+// The learning objective of this challenge is to examine existing code that allows users to drag & drop elements around the screen, and use an if condition to prevent the drop from happening when a condition is true. Challenges will require you to practice your Googling skills. There are a couple technical keywords in the requirements below that you can use to find some information on the Web.
+
+// Open this drag & drop JSFiddle project and copy all of the code into a local project in your workspace directory. You won't know what all this code is doing. That's okay! Part of this exercise is about practicing finding your way around code that's over your head-- something you'll have to do a lot on the job.
+
+// The user should be able to drag one of the middle cards into either the top box, or the bottom box. However, there's a problem with the way the code currently works. There's also a couple changes you need to make.
+
+//     If you drag one of the cards into the top/bottom box, and then drag another card into the first one, you get a nested card. You need to prevent this from happening.
+//     The user should only be able to drag one card into either box. Use the childNodes property to ensure that, if a card is already in the box, another can't be added.
+//     The user should be able to move a card from the top/bottom box back to the middle.
+
+const DragDropManager = Object.create(null, {
+  init: {
+    value: () => {
+      const stages = document.querySelectorAll(".stage")
+
+      stages.forEach(stage => {
+        // Gain reference of item being dragged
+        stage.ondragstart = e => {
+          e.dataTransfer.setData("text", e.target.classList)
+        }
+      })
+
+
+      const targets = document.querySelectorAll(".target")
+
+      targets.forEach(target => {
+        // Dragover not supported by default. Turn that off.
+        target.ondragover = e => e.preventDefault()
+
+        target.ondrop = e => {
+          // Enabled dropping on targets
+          e.preventDefault()
+
+          // Determine what's being dropped
+          const data = e.dataTransfer.getData("text")
+
+          // Append card to target component as child
+          // TODO: This should only happen if the target has no children nodes
+          if((e.target.classList.contains("target") === true && e.target.childNodes.length === 0) || e.target.classList.contains("grid")){
+          e.target.appendChild(document.querySelector(`.${data.split(" ")[1]}`))
+          } 
+            
+          console.log("Target: ", e.target)
+          console.log("Data split: ", data.split(" ")[1])
+          console.log("Child nodes: ", e.target.childNodes.length)
+        }
+      })
+    }
+  }
+})
+
+DragDropManager.init()
 
 
 

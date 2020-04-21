@@ -11,7 +11,7 @@
 
 <body>
   
-  <article id="powerList">
+  <!-- <article id="powerList">
     <section id="flight" class="power disabled">
         Flight
     </section>
@@ -28,9 +28,19 @@
   <button id="activate-xray">Active X-ray Vision</button>
 
   <button id="activate-all">Active All Powers</button>
-  <button id="deactivate-all">Deactive All Powers</button>
+  <button id="deactivate-all">Deactive All Powers</button> -->
 
-  
+  <header class="target currentStage"></header>
+
+<article class="target grid origin">
+  <section class="stage stage--design" draggable="true">Design</section>
+  <section class="stage stage--develop" draggable="true">Develop</section>
+  <section class="stage stage--test" draggable="true">Test</section>
+  <section class="stage stage--release" draggable="true">Release</section>
+</article>
+
+<footer class="target finishedStage"></footer>
+
 
     <script src="script.js"></script>
 </body>
