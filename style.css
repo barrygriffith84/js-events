@@ -1,0 +1,27 @@
+.output-containers {
+    display: flex;
+}
+
+#article1 {
+    border: 1px solid green;
+    width: 50vw;
+    height: 10vh;
+    margin: 10px;
+}
+
+#article2 {
+    border: 1px solid blue;
+    width: 50vw;
+    height: 10vh;
+    margin: 10px;
+}
+
+.disabled {
+    background-color: gray;
+}
+
+.enabled {
+    background-color: fuchsia;
+    color: goldenrod;
+}
+
